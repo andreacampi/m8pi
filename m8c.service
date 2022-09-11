@@ -1,0 +1,15 @@
+[Unit]
+Description=m8c
+
+[Service]
+Environment=DISPLAY=:0
+Environment=XAUTHORITY=/home/andrea/.Xauthority
+ExecStart=/home/andrea/m8c/m8c
+Restart=always
+RestartSec=10s
+KillMode=process
+TimeoutSec=infinity
+User=andrea
+
+[Install]
+WantedBy=graphical.target

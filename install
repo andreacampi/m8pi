@@ -1,0 +1,32 @@
+#! /bin/bash
+
+set -euf -o pipefail
+
+cd $HOME
+
+sudo apt update && sudo apt install -y git gcc make libsdl2-dev libserialport-dev
+yes | sudo apt autoremove && echo ''
+
+if [ ! -d m8c ]
+then
+  git clone https://github.com/laamaa/m8c.git
+fi
+
+if [ ! -d .local/share/m8c ]
+then
+  mkdir -p .local/share/m8c
+fi
+if [ ! -L .local/share/m8c/config.ini ]
+then
+  rm .local/share/m8c/config.ini
+  ln -sf $HOME/m8pi/config.ini ../.local/share/m8c/config.ini
+fi
+
+pushd m8c
+make
+popd
+
+sudo cp m8pi/m8c.service /lib/systemd/system
+
+sudo systemctl daemon-reload
+sudo systemctl enable m8c.service
