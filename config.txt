@@ -22,7 +22,7 @@
 
 # uncomment to force a specific HDMI mode (this will force VGA)
 hdmi_group=2
-hdmi_mode=87
+#hdmi_mode=87
 hdmi_timings=480 0 50 20 50 800 0 19 20 20 0 0 0 60 38000000 6
 
 # uncomment to force a HDMI mode rather than DVI. This can make audio work in
